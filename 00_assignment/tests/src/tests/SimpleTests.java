@@ -25,4 +25,16 @@ public class SimpleTests {
 		//Integer.MAX_VALUE == 2^31 - 1 
 		//Integer.MIN_VALUE == -(2^31)
 	}
+	
+	// Exercise 2.2) b)
+	@Test
+	void testFib() {
+		Assertions.assertEquals(0,Simple.fib(0));
+		Assertions.assertEquals(1,Simple.fib(1));
+		Assertions.assertEquals(1,Simple.fib(2));
+		Assertions.assertEquals(2,Simple.fib(3));
+		Assertions.assertEquals(3,Simple.fib(4));
+		Assertions.assertEquals(0,Simple.fib(-1));
+		
+	}
 }
