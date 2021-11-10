@@ -58,6 +58,12 @@ public class SimpleTests {
 		Assertions.assertThrows(AssertionError.class, () -> Simple.max(null, 0, 0)); // () -> points to a lambda expression that accepts zero arguments
 		Assertions.assertThrows(AssertionError.class, () -> Simple.max(a, -1, 0));
 		Assertions.assertThrows(AssertionError.class, () -> Simple.max(a, 0, 100));
+		
+		int[] empty = {};
+		Assertions.assertThrows(AssertionError.class, () -> Simple.max(empty, 0, 0));
+		Assertions.assertThrows(AssertionError.class, () -> Simple.max(empty, -1, 0));
+		Assertions.assertThrows(AssertionError.class, () -> Simple.max(empty, 0, 100));
+		
 	}	
 	
 	
