@@ -34,7 +34,15 @@ public class SimpleTests {
 		Assertions.assertEquals(1,Simple.fib(2));
 		Assertions.assertEquals(2,Simple.fib(3));
 		Assertions.assertEquals(3,Simple.fib(4));
-		Assertions.assertEquals(0,Simple.fib(-1));
 		
 	}
+	
+	@Test
+	void testFib_NegativeInput_ReturnsZero() {
+		Assertions.assertEquals(0,Simple.fib(-1));
+		Assertions.assertEquals(0,Simple.fib(Integer.MIN_VALUE));
+		
+	}
+	
+	
 }
