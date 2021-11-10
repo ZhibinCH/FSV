@@ -44,5 +44,12 @@ public class SimpleTests {
 		
 	}
 	
+	@Test
+	void testFib_VeryLargeInput() {
+		Assertions.assertEquals(1836311903, Simple.fib(46));
+		// Assertions.assertTrue(Simple.fib(47)<0); -> it leads to an int-overflow
+		
+	}
+	
 	
 }
