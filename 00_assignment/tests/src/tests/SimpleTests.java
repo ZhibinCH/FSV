@@ -4,14 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class SimpleTests {
-	static int a[] = { 1, 4, 2, 3, 5, 7, 4, 9, -1 };
-	
-	@Test
-	void testMax() {
-		Assertions.assertEquals(1, Simple.max(a, 0, 1));
-		Assertions.assertEquals(3, Simple.max(a, 2, 4));
-		Assertions.assertEquals(9, Simple.max(a, 0, a.length));
-	}
 	
 	// Exercise 2.1) a)
 	@Test
@@ -26,7 +18,7 @@ public class SimpleTests {
 		//Integer.MIN_VALUE == -(2^31)
 	}
 	
-	// Exercise 2.2) b)
+	// Exercise 2.1) b)
 	@Test
 	void testFib() {
 		Assertions.assertEquals(0,Simple.fib(0));
@@ -50,6 +42,23 @@ public class SimpleTests {
 		// Assertions.assertTrue(Simple.fib(47)<0); -> it leads to an int-overflow
 		
 	}
+
+	// Exercise 2.1) c)
+	static int a[] = { 1, 4, 2, 3, 5, 7, 4, 9, -1 };
+	
+	@Test
+	void testMax() {
+		Assertions.assertEquals(1, Simple.max(a, 0, 1));
+		Assertions.assertEquals(3, Simple.max(a, 2, 4));
+		Assertions.assertEquals(9, Simple.max(a, 0, a.length));
+	}
+	
+	@Test
+	void testMax_InvalidParams_throwsError() {
+		Assertions.assertThrows(AssertionError.class, () -> Simple.max(null, 0, 0)); // () -> points to a lambda expression that accepts zero arguments
+		Assertions.assertThrows(AssertionError.class, () -> Simple.max(a, -1, 0));
+		Assertions.assertThrows(AssertionError.class, () -> Simple.max(a, 0, 100));
+	}	
 	
 	
 }
