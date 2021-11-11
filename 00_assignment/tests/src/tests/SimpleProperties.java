@@ -27,4 +27,19 @@ public class SimpleProperties {
 		Assertions.assertTrue(y >= 0);
 	}
 	
+	@Property
+	void checkAbsReference(@ForAll int x) {
+		Assertions.assertTrue(Simple.abs(x) == Math.abs(x));
+	}
+	
+	// Exercise 2.2) b)
+	@Property
+	void maxContainsAll(@ForAll int array[]) {
+		Assume.that(array.length > 0);
+		int max = Simple.max(array, 0, array.length);
+		Assertions.assertTrue(IntUtils.asList(array).contains(max));
+	}
+	
+	
+	
 }
