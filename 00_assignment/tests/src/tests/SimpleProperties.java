@@ -3,6 +3,7 @@ package tests;
 import org.junit.jupiter.api.Assertions;
 
 import net.jqwik.api.Property;
+import net.jqwik.api.constraints.IntRange;
 import net.jqwik.api.Assume;
 import net.jqwik.api.ForAll;
 
@@ -40,6 +41,26 @@ public class SimpleProperties {
 		Assertions.assertTrue(IntUtils.asList(array).contains(max));
 	}
 	
+	@Property
+	void maxContains(@ForAll int array[], @ForAll @IntRange(min = 0, max = 10) int left,
+			@ForAll @IntRange(min = 0, max = 10) int right) {
+		// try to remove the int range constraints, and see what happens!
+		Assume.that(0 <= left && left < right && right <= array.length);
+		
+		int max_ele = Simple.max(array, left, right);
+		Assertions.assertTrue(IntUtils.asList(array, left, right).contains(max_ele));
+	}
 	
+	@Property
+	void maxGreatest(@ForAll int array[], @ForAll @IntRange(min = 0, max = 10) int left,
+			@ForAll @IntRange(min = 0, max = 10) int right) {
+
+		Assume.that(0 <= left && left < right && right <= array.length);
+		
+		int max_ele = Simple.max(array, left, right);
+		for (int i = left; i < right; i++) {
+			Assertions.assertTrue(max_ele >= array[i]);
+		}
+	}
 	
 }

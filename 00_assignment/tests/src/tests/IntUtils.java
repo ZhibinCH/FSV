@@ -13,5 +13,12 @@ public class IntUtils {
 		}
 		return intList;
 	}
+	
+	static List<Integer> asList(int a[], int from, int to) {
+		List<Integer> intList = new ArrayList<>();
+		for (int i = from; i < to; i++)
+			intList.add(a[i]);
+		return intList;
+	}
 
 }
