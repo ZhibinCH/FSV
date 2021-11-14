@@ -1,5 +1,7 @@
 package phonebook;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -109,5 +111,56 @@ public class PhoneBookTests {
 		// Check result
 		int[] numbers = book.lookupName(HILBERT);
 		assertElements(numbers);
+	}
+	
+	@Test
+	@DisplayName("addEntry_addFiveElementsForSingleKey_lookupIsCorrect")
+	void testAdd5EntriesForSameKey() {
+		// Exercise 1d, g)
+
+		// Run test
+		book.addEntry(HILBERT, 1);
+		book.addEntry(HILBERT, 2);
+		book.addEntry(HILBERT, 3);
+		book.addEntry(HILBERT, 4);
+		book.addEntry(HILBERT, 5); // like no effect, because the length is larger than 4
+
+		// Check result
+		int[] numbers = book.lookupName(HILBERT);
+		assertElements(numbers, 1, 2, 3, 4);
+	}
+
+	@Test
+	@DisplayName("removeEntry_removeTwoExistingValues_leavesOthersUnaffected")
+	void testAddMultipleEntriesForSameKeyDeleteTwo() {
+		// Exercise 1g)
+
+		// Run test
+		book.addEntry(HILBERT, 1);
+		book.addEntry(HILBERT, 2);
+		book.addEntry(HILBERT, 3);
+		book.addEntry(HILBERT, 4);
+		book.removeEntry(HILBERT,4);
+		book.removeEntry(HILBERT,3);
+		book.removeEntry(HILBERT,1);
+		book.removeEntry(HILBERT,2); // could not be removed, because the removeEntry stops once there is a 0 
+
+		// Check result
+		int[] numbers = book.lookupName(HILBERT);
+		assertElements(numbers,2); 
+	}
+
+	@Test
+	@DisplayName("lookupName_addTwoEntries_lookUpReturnsCorrectNumber")
+	void testAdd2EntriesLookUpOne() {
+		// Exercise 1g)
+
+		// Run test
+		book.addEntry("Anna", 1234);
+		book.addEntry("Nana", 1235); // "Anna" and "Nana" lead to the same hash value defined in PhoneBook class
+
+		// Check result
+		int[] numbers = book.lookupName("Anna");
+		assertElements(numbers, 1234, 1235);
 	}
 }
