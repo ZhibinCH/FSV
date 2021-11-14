@@ -59,7 +59,7 @@ public class PhoneBookTests {
 	
 	@Test
 	void removeEntry_inEmptyPhoneBook() {
-		// Run method to be tested
+		// Exercise 1c)
 		book.removeEntry("Hilbert", 1234);
 
 		// Check result
@@ -96,5 +96,18 @@ public class PhoneBookTests {
 		// Check result
 		int[] numbers = book.lookupName(HILBERT);
 		assertElements(numbers, 1);
+	}
+	
+	@Test
+	@DisplayName("addEntry_addValueZero_isNotValid")
+	void testZeroCanNotBeAdded() {
+		// Exercise 1d)
+
+		// Run test
+		book.addEntry(HILBERT, 0);
+
+		// Check result
+		int[] numbers = book.lookupName(HILBERT);
+		assertElements(numbers);
 	}
 }
